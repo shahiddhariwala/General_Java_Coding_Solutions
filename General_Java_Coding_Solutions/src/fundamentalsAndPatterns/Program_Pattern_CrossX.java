@@ -1,10 +1,27 @@
 // Pattern
 /*
-* * * * * 
+5
 *       * 
+  *   *   
+    *     
+  *   *   
 *       * 
-*       * 
-* * * * * 
+6
+*         * 
+  *     *   
+    * *     
+    * *     
+  *     *   
+*         * 
+7
+*           * 
+  *       *   
+    *   *     
+      *       
+    *   *     
+  *       *   
+*           * 
+
  */
 
 package fundamentalsAndPatterns;
@@ -16,7 +33,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Program_Pattern_Square
+public class Program_Pattern_CrossX
 {
 
 	public static void main(String[] args) throws IOException
@@ -34,23 +51,15 @@ public class Program_Pattern_Square
 		int number = Integer.parseInt(br.readLine());
 		for (int i = 1; i <= number; i++)
 		{
-			if (i == 1 || i == number)
+
+			for (int j = 1; j <= number; j++)
 			{
-				for (int j = 1; j <= number; j++)
+				if (j == i || j == number - i + 1)
 				{
 					bw.write("* ");
-				}
-			} else
-			{
-				for (int j = 1; j <= number; j++)
+				} else
 				{
-					if (j == 1 || j == number)
-					{
-						bw.write("* ");
-					} else
-					{
-						bw.write("  ");
-					}
+					bw.write("  ");
 				}
 			}
 
