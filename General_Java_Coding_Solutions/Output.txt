@@ -1,1 +1,1 @@
-GCD/HCM is12
+Reverse of 123456 is 654321
