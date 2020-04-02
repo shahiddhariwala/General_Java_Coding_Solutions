@@ -1,10 +1,17 @@
 // Pattern
-//* * * * * * 
-//* * * * * 
-//* * * * 
-//* * * 
-//* * 
-//* 
+/*
+5
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+* * * * 
+* * * 
+* * 
+* 
+
+ */
 
 package fundamentalsAndPatterns;
 
@@ -12,7 +19,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Program_Pattern_UpSide_Down_Right_Angle_Triangle
+public class Program_Pattern_Right_Rotated_Pyramid
 {
 
 	public static void main(String[] args) throws IOException
@@ -20,18 +27,27 @@ public class Program_Pattern_UpSide_Down_Right_Angle_Triangle
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		// Actual Program Logic
-		int number = Integer.parseInt(br.readLine());
-		for (int i = 1; i <= number; i++)
+		int n = Integer.parseInt(br.readLine());
+
+		for (int row = 1, nst = 1; row <= (2 * n) - 1; row++)
 		{
-			for (int j = 1; j <= number - i + 1; j++)
+			for (int cst = 1; cst <= nst; cst++)
 			{
 				System.out.print("* ");
 			}
-			System.out.print("\n");
+			if (row < n)
+			{
+				nst += 1;
+			} else
+			{
+				nst -= 1;
+			}
 
+			System.out.println();
 		}
-		// logic end here
 		br.close();
+		// logic end here
+
 	}
 
 }

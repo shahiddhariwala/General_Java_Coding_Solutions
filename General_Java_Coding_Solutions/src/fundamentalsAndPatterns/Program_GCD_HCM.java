@@ -1,29 +1,15 @@
 package fundamentalsAndPatterns;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Program_GCD_HCM
 {
 
 	public static void main(String[] args) throws IOException
 	{
-		// Input
-		File input = new File("Input.txt");
-		File output = new File("Output.txt");
-		input.createNewFile();
-		output.createNewFile();
-		// return false if file exist
-		// System.out.println("File Creation Done");
-
-		// Reading from File
-		BufferedReader br = new BufferedReader(new FileReader(input));
-		// Writing to file
-		BufferedWriter bw = new BufferedWriter(new FileWriter(output));
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		int divedent = Integer.parseInt(br.readLine());
 		int divisor = Integer.parseInt(br.readLine());
@@ -36,9 +22,9 @@ public class Program_GCD_HCM
 			divedent = divisor;
 			divisor = rem;
 		}
-		bw.write("GCD/HCM is " + rem);
+		System.out.print("GCD/HCM is " + rem);
 		br.close();
-		bw.close();
+
 	}
 
 }

@@ -38,7 +38,7 @@ public class Program_Pattern_Upside_Down_Pyramid
 			System.out.println();
 		}
 		// logic end here
-
+		br.close();
 	}
 
 }

@@ -10,25 +10,15 @@
 package fundamentalsAndPatterns;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Program_Pattern_Square
 {
 
 	public static void main(String[] args) throws IOException
 	{
-		// File IO Start
-		File input = new File("Input.txt");
-		File output = new File("Output.txt");
-		input.createNewFile();
-		output.createNewFile();
-		BufferedReader br = new BufferedReader(new FileReader(input));
-		BufferedWriter bw = new BufferedWriter(new FileWriter(output));
-		// File IO End
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		// Actual Program Logic
 		int number = Integer.parseInt(br.readLine());
@@ -38,7 +28,7 @@ public class Program_Pattern_Square
 			{
 				for (int j = 1; j <= number; j++)
 				{
-					bw.write("* ");
+					System.out.print("* ");
 				}
 			} else
 			{
@@ -46,20 +36,19 @@ public class Program_Pattern_Square
 				{
 					if (j == 1 || j == number)
 					{
-						bw.write("* ");
+						System.out.print("* ");
 					} else
 					{
-						bw.write("  ");
+						System.out.print("  ");
 					}
 				}
 			}
 
-			bw.write("\n");
+			System.out.print("\n");
 
 		}
 		// logic end here
 		br.close();
-		bw.close();
 	}
 
 }
