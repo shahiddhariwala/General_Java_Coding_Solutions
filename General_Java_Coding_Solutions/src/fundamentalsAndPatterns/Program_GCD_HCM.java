@@ -3,7 +3,9 @@ package fundamentalsAndPatterns;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+//60
+//25
+//GCD/HCM is 5
 public class Program_GCD_HCM
 {
 
