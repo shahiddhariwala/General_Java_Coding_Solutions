@@ -1,28 +1,20 @@
 /*
-2	|32	 = 0
-2	|16	 = 0
-2	|8	 = 0
-2	|4	 = 0
-2	|2	 = 0
-2	|1	 = 1
+8	|80	 = 0
+8	|10	 = 2
+8	|1	 = 1
 
-Octal of 32 is 100000
-Octal of 32 using inbuilt method is 100000
+Octal of 80 is 120
+Octal of 80 using inbuilt method is 120
 
 
 
+0 x 8^0	 = 0
+2 x 8^1	 = 16
+1 x 8^2	 = 64
+Total	   80
 
-
-1 x 2^0	 = 1
-1 x 2^1	 = 2
-1 x 2^2	 = 4
-1 x 2^3	 = 8
-1 x 2^4	 = 16
-1 x 2^5	 = 32
-Total	   63
-
-Decimal of 111111 is 63
-Decimal of 111111 using inbuilt method is 63
+Decimal of 120 is 80
+Decimal of 120 using inbuilt method is 80
 
  */
 package numberSystemAndDataType;
