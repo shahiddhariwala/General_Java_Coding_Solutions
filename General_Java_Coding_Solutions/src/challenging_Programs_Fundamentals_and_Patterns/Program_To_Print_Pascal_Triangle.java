@@ -40,14 +40,24 @@ public class Program_To_Print_Pascal_Triangle {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int num = sc.nextInt();
-		int passcalArray[] = new int[101];
 		
-		for(int row =1;row< num;row++)
+		int passcalArray[][] = new int[num+1][num+1];
+		for(int row =1;row<= num;row++)
 		{
+			
 			for(int cst = 1 ; cst <= row;cst++)
 			{
-				
+				if(cst==row || cst==1)
+				{
+					passcalArray[row][cst]=1;
+				}
+				else
+				{
+					passcalArray[row][cst]=passcalArray[row-1][cst-1]+passcalArray[row-1][cst];
+				}
+				System.out.print(passcalArray[row][cst]+"\t");
 			}
+			System.out.println();
 		}
 
 	}
