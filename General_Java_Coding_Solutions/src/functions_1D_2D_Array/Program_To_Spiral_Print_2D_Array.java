@@ -6,6 +6,7 @@ Twitter  : https://twitter.com/shahiddhariwala
 */
 /*
 
+
 2D Array is as follow
 11	12	13	14	
 21	22	23	24	
@@ -14,7 +15,8 @@ Twitter  : https://twitter.com/shahiddhariwala
 Spiral ClockWise
 11, 12, 13, 14, 24, 34, 44, 43, 42, 41, 31, 21, 22, 23, 33, 32, END
 Spiral AntiClockWise
-14, 13, 12, 11, 21, 31, 41, 42, 43, 44, 34, 24, 23, 22, 32, 33, END
+11, 21, 31, 41, 42, 43, 44, 34, 24, 14, 13, 12, 22, 32, 33, 23, END
+
 
 
  */
