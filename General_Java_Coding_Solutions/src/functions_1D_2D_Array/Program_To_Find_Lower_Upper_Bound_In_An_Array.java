@@ -25,7 +25,7 @@ public class Program_To_Find_Lower_Upper_Bound_In_An_Array {
 		int ans=-1;
 		int lo = 0;
 		int hi = arr.length-1;
-		while(lo<hi)
+		while(lo<=hi)
 		{
 			int mid = (lo+hi)/2;
 			if(itemToFind<arr[mid])
@@ -50,7 +50,7 @@ public class Program_To_Find_Lower_Upper_Bound_In_An_Array {
 		int ans=-1;
 		int lo = 0;
 		int hi = arr.length-1;
-		while(lo<hi)
+		while(lo<=hi)
 		{
 			int mid = (lo+hi)/2;
 			if(itemToFind<arr[mid])

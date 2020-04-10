@@ -53,7 +53,7 @@ public class Program_To_Find_Number_Using_Binary_Search {
 		
 		int start = 0 ; 
 		int end = arr.length-1;
-		while(start<end)
+		while(start<=end)
 		{
 			int mid  = (start+end)/2;
 			if(arr[mid] > serVal)
