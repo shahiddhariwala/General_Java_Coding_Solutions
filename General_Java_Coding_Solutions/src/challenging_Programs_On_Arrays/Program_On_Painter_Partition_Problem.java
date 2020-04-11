@@ -35,7 +35,7 @@ We also know that the values in this range must be in sorted order. Here our tar
 
 We can see that the highest possible value in this range is the sum of all the elementsin the array and this happens when we allot 1 painter all the sections of the board. The lowest possible value of this range is the maximum value of the array max, as in this allocation we can allot max to one painter and divide the other sections such that the cost of them is less than or equal to max and as close as possible to max. Now if we consider we use x painters in the above scenarios, it is obvious that as the value in the range increases, the value of x decreases and vice-versa. From this we can find the target value when x=k and use a helper function to find x, the minimum number of painters required when the maximum length of section a painter can paint is given.
 */
-package functions_1D_2D_Array;
+package challenging_Programs_On_Arrays;
 
 import java.util.*;
 import java.util.Scanner;
