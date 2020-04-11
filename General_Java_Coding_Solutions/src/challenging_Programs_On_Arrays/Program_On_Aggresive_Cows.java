@@ -27,7 +27,7 @@ Explanation
 Problem Credits - (Spoj)[http://www.spoj.com/problems/AGGRCOW/]
 */
 
-package functions_1D_2D_Array;
+package challenging_Programs_On_Arrays;
 
 import java.util.Arrays;
 import java.util.Scanner;
