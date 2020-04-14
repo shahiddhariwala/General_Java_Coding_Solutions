@@ -20,7 +20,8 @@ public class Program_To_Get_Subsequences_ArrayList_Using_Recursion
 		ArrayList<String> al = getSubsequences(str);
 		System.out.println(al);
 		sc.close();
-		
+		// [, a, b, ab, c, ac, bc, abc]
+
 
 	}
 
@@ -34,12 +35,14 @@ public class Program_To_Get_Subsequences_ArrayList_Using_Recursion
 			return al;
 		}
 		char ch = str.charAt(0);
+		
 		al = getSubsequences(str.substring(1));
 		ArrayList<String> myResult = new ArrayList<String>();
 		for (String s : al)
 		{
 			myResult.add(s);
 			myResult.add(ch+s);
+			
 		}
 		return myResult;
 	}
