@@ -19,15 +19,15 @@ public class Program_To_Print_Paths_To_Reach_End_Path
 		// reach (n,n) from 0,0 only movement is allowed 1 step horizonal right or 1
 		// step vertical down
 		ArrayList<String> al = printMazePath(n, m, 0, 0);
-		for(String s : al)
+		for (String s : al)
 		{
-			System.out.print(s+" ");
+			System.out.print(s + " ");
 		}
 		System.out.println();
 		System.out.println(al.size());
-//		HHVV HVHV HVVH VHHV VHVH VVHH 
-//		6
-		justPrintMazePath(n,m,0,0,"");
+		// HHVV HVHV HVVH VHHV VHVH VVHH
+		// 6
+		justPrintMazePath(n, m, 0, 0, "");
 	}
 
 	private static ArrayList<String> printMazePath(int n, int m, int i, int j)
@@ -50,32 +50,31 @@ public class Program_To_Print_Paths_To_Reach_End_Path
 		ArrayList<String> myResult = new ArrayList<String>();
 		for (String s : rrH)
 		{
-			myResult.add("H" + s);
+			myResult.add("H"+s);
 		}
 		for (String s : rrV)
 		{
-			myResult.add("V" + s);
+			myResult.add("V"+s);
 		}
 		return myResult;
 	}
-	private static void justPrintMazePath(int n ,int m,int i,int j,String output)
+
+	private static void justPrintMazePath(int n, int m, int i, int j, String output)
 	{
 		if (i > n || j > m)
 		{
 			return;
 		}
-		
-		if(i== n && j == m )
+
+		if (i == n && j == m)
 		{
-			System.out.print(output+" ");
+			System.out.print(output + " ");
 			return;
 		}
-		justPrintMazePath(n,n,i+1,j,"H"+output);
-		justPrintMazePath(n,n,i,j+1,"V"+output);
-		
-	}
+		justPrintMazePath(n, n, i + 1, j, output + "H");
+		justPrintMazePath(n, n, i, j + 1, output + "V");
 
-	
+	}
 
 }
 
