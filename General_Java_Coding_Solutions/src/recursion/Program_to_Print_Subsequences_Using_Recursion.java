@@ -5,7 +5,7 @@ Twitter  : https://twitter.com/shahiddhariwala
 */
 
 
-package recursionAndBacktracking;
+package recursion;
 
 public class Program_to_Print_Subsequences_Using_Recursion
 {

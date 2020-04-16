@@ -5,7 +5,7 @@ Twitter  : https://twitter.com/shahiddhariwala
 */
 
 
-package recursionAndBacktracking;
+package recursion;
 
 public class Program_To_Calculate_Power_Using_Recursion
 {

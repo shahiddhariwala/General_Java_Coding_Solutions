@@ -4,7 +4,7 @@ LinkedIn : https://www.linkedin.com/in/shahiddhariwala/
 Twitter  : https://twitter.com/shahiddhariwala
 */
 
-package recursionAndBacktracking;
+package recursion;
 
 public class Program_To_Print_N_Numbers_Using_Recursion
 {

@@ -5,7 +5,7 @@ Twitter  : https://twitter.com/shahiddhariwala
 */
 
 
-package recursionAndBacktracking;
+package recursion;
 
 import java.util.ArrayList;
 import java.util.Scanner;

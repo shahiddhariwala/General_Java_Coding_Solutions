@@ -4,7 +4,7 @@ LinkedIn : https://www.linkedin.com/in/shahiddhariwala/
 Twitter  : https://twitter.com/shahiddhariwala
 */
 
-package recursionAndBacktracking;
+package recursion;
 
 public class Program_To_Find_First_Index_Of_Element_In_Array_Using_Recursion
 {
