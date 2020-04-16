@@ -33,6 +33,7 @@ public class Program_On_Coin_Change_Combination
 		{
 			count++;
 			System.out.println(count + ". " + output);
+			return;
 		}
 		for (int i = lastCoinIndex; i < coins.length; i++)
 		{
