@@ -27,7 +27,7 @@ The possible permutations for the given string are { "AAB" , "AAB" , "ABA" , "BA
  permutation and only print it in once. Also we print the final output in lexicographical order.
 */
 
-package backtracking;
+package challenging_Program_On_Backtracking;
 
 import java.util.Arrays;
 import java.util.Scanner;

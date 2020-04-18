@@ -34,7 +34,7 @@ Sample Output
 Explanation
 For n=1 : integers = a, b . For n=2 : integers = aa, ab, ba For n=3 : integers = aaa, aab, aba, baa, bab
 */
-package backtracking;
+package challenging_Program_On_Backtracking;
 
 import java.util.Scanner;
 
