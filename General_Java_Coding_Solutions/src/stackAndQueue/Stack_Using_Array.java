@@ -50,6 +50,7 @@ class StackA
 		}
 
 		int val = stackArray[top];
+		stackArray[top] = 0;
 		top--;
 		return val;
 
