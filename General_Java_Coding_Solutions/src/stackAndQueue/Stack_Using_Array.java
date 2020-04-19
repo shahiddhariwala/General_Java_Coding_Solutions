@@ -11,15 +11,14 @@ import java.util.Random;
 class StackA
 {
 	public final static int DEFAULT_CAPACITY = 10;
-	private int top;
-	private int stackArray[];
-	private int size;
+	protected int top;
+	protected int stackArray[];
 
 	public StackA(int size) throws Exception
 	{
 		if (size < 1)
 			throw new Exception("Invalid Capacity");
-		this.size = size;
+		
 		stackArray = new int[size];
 		top = -1;
 	}
@@ -31,7 +30,7 @@ class StackA
 
 	void push(int val)
 	{
-		if (top >= size - 1)
+		if (top >= this.stackArray.length)
 		{
 			System.out.println("Stack is Full, Cant Add " + val);
 			return;

@@ -8,9 +8,9 @@ package stackAndQueue;
 
 class QueueA
 {
-	private int size;
+	protected int size;
 	public static final int DEFAULT_CAPACITY = 10;
-	private int front;
+	protected int front;
 
 	int dataArray[];
 
@@ -41,7 +41,7 @@ class QueueA
 
 	void enqueue(int val) throws Exception
 	{
-		if (this.size == this.dataArray.length)
+		if (this.size() == this.dataArray.length)
 		{
 			throw new Exception("Queue is Full");
 		}
