@@ -84,8 +84,6 @@ class StackA
 			System.out.println("Stack is Empty");
 			return;
 		}
-
-		System.out.println("Stack contains ");
 		for (int i = top; i >= 0; i--)
 		{
 			System.out.println(stackArray[i]);
@@ -153,7 +151,7 @@ public class Stack_Using_Array
 		System.out.println("Size of Stack is " + stak2.size());
 		stak2.push(222222);
 
-		stak2.push(2222222);
+//		stak2.push(2222222);
 		stak2.display();
 		/*
 		 * ||||||||||||||||| Stack 2 ||||||||||||||||||
