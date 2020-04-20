@@ -47,7 +47,7 @@ class QueueA
 		}
 		int availableIndex = (this.front + this.size) % dataArray.length;
 		this.dataArray[availableIndex] = val;
-		size++;
+		this.size++;
 
 	}
 
@@ -69,10 +69,10 @@ class QueueA
 			throw new Exception("Queue is Empty");
 
 		System.out.print("[ ");
-		for (int i = front; i < size + front; i++)
+		for (int i = 0; i < this.size; i++)
 		{
-
-			System.out.print(dataArray[i % this.dataArray.length] + ", ");
+			int ai = (this.front + i) % dataArray.length;
+			System.out.print(dataArray[ai] + ", ");
 		}
 
 		System.out.println("END ]");

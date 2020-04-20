@@ -28,7 +28,7 @@ public class Dynamic_Queue extends QueueA
 			
 			for(int i=0;i<=this.size();i++)
 			{
-				int ai = (i+front)%this.size();
+				int ai = (i+this.front)%this.size();
 				tempArray[i]=this.dataArray[ai];
 			}
 			this.dataArray=tempArray;
