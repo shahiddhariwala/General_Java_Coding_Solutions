@@ -37,7 +37,7 @@ public class Queue_Using_Stack_Client
 			System.out.println("is Empty ?  " + qobj.isEmpty());
 		}
 		long endTime = System.nanoTime();
-		System.out.println("Total Nanosecond taken to execute => "+(endTime-startTime));
+		System.out.println("Total Nanosecond taken to execute => " + (endTime - startTime));
 		startTime = System.nanoTime();
 		System.out.println("\t---------VERSION 2---------\n--------Dequeue Efficient Approach------------");
 		Queue_Using_Stack_Enqueue_Efficeint qdobj = new Queue_Using_Stack_Enqueue_Efficeint();
@@ -55,7 +55,109 @@ public class Queue_Using_Stack_Client
 			System.out.println("is Empty ?  " + qdobj.isEmpty());
 		}
 		endTime = System.nanoTime();
-		System.out.println("Total Nanosecond taken to execute => "+(endTime-startTime));
+		System.out.println("Total Nanosecond taken to execute => " + (endTime - startTime));
+		/*
+		 * ---------VERSION 1---------
+		 * --------Enqueue Efficient Approach------------
+		 * 10
+		 * 20
+		 * 30
+		 * 40
+		 * 50
+		 * 60
+		 * 70
+		 * Front 10
+		 * Size 7
+		 * Removed 10
+		 * 20
+		 * 30
+		 * 40
+		 * 50
+		 * 60
+		 * 70
+		 * is Empty ? false
+		 * Front 20
+		 * Size 6
+		 * Removed 20
+		 * 30
+		 * 40
+		 * 50
+		 * 60
+		 * 70
+		 * is Empty ? false
+		 * Front 30
+		 * Size 5
+		 * Removed 30
+		 * 40
+		 * 50
+		 * 60
+		 * 70
+		 * is Empty ? false
+		 * Front 40
+		 * Size 4
+		 * Removed 40
+		 * 50
+		 * 60
+		 * 70
+		 * is Empty ? false
+		 * Front 50
+		 * Size 3
+		 * Removed 50
+		 * 60
+		 * 70
+		 * is Empty ? false
+		 * Total Nanosecond taken to execute => 26598473
+		 * ---------VERSION 2---------
+		 * --------Dequeue Efficient Approach------------
+		 * 10
+		 * 20
+		 * 30
+		 * 40
+		 * 50
+		 * 60
+		 * 70
+		 * Front 10
+		 * Size 7
+		 * Removed 10
+		 * 20
+		 * 30
+		 * 40
+		 * 50
+		 * 60
+		 * 70
+		 * is Empty ? false
+		 * Front 20
+		 * Size 6
+		 * Removed 20
+		 * 30
+		 * 40
+		 * 50
+		 * 60
+		 * 70
+		 * is Empty ? false
+		 * Front 30
+		 * Size 5
+		 * Removed 30
+		 * 40
+		 * 50
+		 * 60
+		 * 70
+		 * is Empty ? false
+		 * Front 40
+		 * Size 4
+		 * Removed 40
+		 * 50
+		 * 60
+		 * 70
+		 * is Empty ? false
+		 * Front 50
+		 * Size 3
+		 * Removed 50
+		 * 60
+		 * 70
+		 * is Empty ? false
+		 * Total Nanosecond taken to execute => 21010487
+		 */
 	}
 
 }
