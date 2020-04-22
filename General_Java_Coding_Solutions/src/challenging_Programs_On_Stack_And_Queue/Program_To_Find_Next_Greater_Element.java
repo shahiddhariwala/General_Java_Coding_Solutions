@@ -72,61 +72,56 @@ public class Program_To_Find_Next_Greater_Element
 	 * make some wrong entries in the res array since it considers only the elements
 	 * lying to the right of nums[i], without a circular traversal. But, these
 	 * entries are corrected in the second pass
+	 * 
+	 * Further, to ensure the correctness of the method, let's look at the following
+	 * cases.
+	 * 
+	 * Assume that nums[j]nums[j] is the correct Next Greater Element for
+	 * nums[i]nums[i], such that i < j ≤ stack[top]i<j≤stack[top]. Now, whenever we
+	 * encounter nums[j]nums[j], if nums[j] >
+	 * nums\big[stack[top]\big]nums[j]>nums[stack[top]], it would have already
+	 * popped the previous stack[top]stack[top] and jj would have become the topmost
+	 * element. On the other hand, if nums[j] <
+	 * nums\big[stack[top]\big]nums[j]<nums[stack[top]], it would have become the
+	 * topmost element by being pushed above the previous stack[top]stack[top]. In
+	 * both the cases, if nums[j] > nums[i]nums[j]>nums[i], it will be correctly
+	 * determined to be the Next Greater Element.
 	 */
 	private static void printNextGreaterElements(int[] arr)
 	{
 		Stack<Integer> stack = new Stack<Integer>();
-
 		int ans[] = new int[arr.length];
-		for (int i = arr.length-1 ; i >=0;i--)
+		// First pass
+		for (int i = 2 * arr.length - 1; i >= 0; i--)
 		{
+			int currIndex = i % arr.length;
 
-			if(!stack.isEmpty() && arr[stack.peek()]>arr[i])
+			while (!stack.isEmpty() && arr[stack.peek()] <= arr[currIndex])
 			{
-				ans[i]=arr[stack.peek()];
+				stack.pop();
 			}
-			else if(!stack.isEmpty())
+
+			if (stack.isEmpty())
 			{
-				while(arr[stack.peek()]<=arr[i])
-				{
-					stack.pop();
-				}
-			}
-			else
+				ans[currIndex] = -1;
+			} else
 			{
-				ans[i]=-1;
+				ans[currIndex] = stack.peek();
 			}
-			stack.push(i);
+
+			stack.push(currIndex);
+
 		}
-
-		for (int i = arr.length-1 ; i >=0;i--)
-		{
-
-			if(!stack.isEmpty() && arr[stack.peek()]>arr[i])
-			{
-				ans[i]=arr[stack.peek()];
-			}
-			else if(!stack.isEmpty())
-			{
-				while(arr[stack.peek()]<=arr[i])
-				{
-					stack.pop();
-				}
-			}
-			else
-			{
-				ans[i]=-1;
-			}
-			stack.push(i);
-		}
-		
-		
 		for (int i = 0; i < ans.length; i++)
 		{
-			System.out.print(ans[i]+" ");
+			if(ans[i]!=-1)
+				System.out.print(arr[ans[i]]+" ");
+			else
+				System.out.print(ans[i]+" ");
 			
 		}
-
+		//3 8 4 1 2
+		//8 -1 8 2 3
 	}
 
 }
