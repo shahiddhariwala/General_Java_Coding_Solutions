@@ -3,6 +3,7 @@ Code by  : Shahid Dhariwala
 LinkedIn : https://www.linkedin.com/in/shahiddhariwala/
 Twitter  : https://twitter.com/shahiddhariwala
 */
+
 /*
 There is a group of MMA fighters standing together in a line.
  Given the value of their strengths, find the strength of the strongest fighter in continuous sub-groups of size k.
@@ -30,6 +31,7 @@ First sub-group: 1 3 1 --> Max strength is 3
 Second sub-group: 3 1 4 --> Max strength is 4
 Third sub-group: 1 4 5 --> Max strength is 5
 */
+
 package challenging_Programs_On_Stack_And_Queue;
 
 import java.io.BufferedReader;
@@ -95,7 +97,20 @@ class FastReader
 
 public class Program_To_Find_Strongest_Fighter_In_Window_Of_K
 {
-
+	/*
+	 * Brute Force: Run two loops. In the outer loop, take all subarrays of size K.
+	 * In the inner loop, get the maximum of the current subarray.
+	 * Efficient Approach - (Sliding Window Technique using Deque)
+	 * 
+	 * We create a Deque, Qi of capacity k, that stores only useful elements of
+	 * current window of k elements. An element is useful if it is in current window
+	 * and is greater than all other elements on left side of it in current window.
+	 * 
+	 * We process all array elements one by one and maintain Qi to contain useful
+	 * elements of current window and these useful elements are maintained in sorted
+	 * order. The element at front of the Qi is the largest and element at rear of
+	 * Qi is the smallest of current window.
+	 */
 	public static void main(String[] args)
 	{
 		FastReader sc = new FastReader();
@@ -112,8 +127,13 @@ public class Program_To_Find_Strongest_Fighter_In_Window_Of_K
 
 	private static void findStrongestMMAFighter(int[] arr, int k)
 	{
+		// Create a Double Ended Queue, Qi that will store indexes of array elements
+		// The queue will store indexes of useful elements in every window and it will
+		// maintain decreasing order of values from front to rear in Qi, i.e.,
+		// arr[Qi.front[]] to arr[Qi.rear()] are sorted in decreasing order
+
 		Deque<Integer> dq = new LinkedList<Integer>();
-		//Dequeue first element will be the largest one always
+		// Dequeue first element will be the largest one always
 		int i = 0;
 		// We have to process first k elements separately
 		for (; i < k; i++)
@@ -123,12 +143,12 @@ public class Program_To_Find_Strongest_Fighter_In_Window_Of_K
 				dq.removeLast();
 			}
 			dq.addLast(i);
-			
+
 		}
 		for (; i < arr.length; i++)
 		{
-		
-			//First element will always be larger 
+
+			// First element will always be larger
 			System.out.print(arr[dq.peekFirst()] + " ");
 
 			// remove elements which are not in current window
@@ -143,7 +163,7 @@ public class Program_To_Find_Strongest_Fighter_In_Window_Of_K
 			}
 			dq.addLast(i);
 		}
-		if(!dq.isEmpty())
+		if (!dq.isEmpty())
 			System.out.print(arr[dq.peek()] + " ");
 
 	}
