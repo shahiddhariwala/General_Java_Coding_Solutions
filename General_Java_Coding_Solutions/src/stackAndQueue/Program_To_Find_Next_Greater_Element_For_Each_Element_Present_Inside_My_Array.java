@@ -15,7 +15,7 @@ public class Program_To_Find_Next_Greater_Element_For_Each_Element_Present_Insid
 
 	public static void main(String[] args)
 	{
-		// We are given a circular array, print the next greater number for every
+		// We are given a  array, print the next greater number for every
 		// element.
 		// If it is not found print -1 for that number.
 		// To find the next greater number for element Ai , start from index i + 1 and
