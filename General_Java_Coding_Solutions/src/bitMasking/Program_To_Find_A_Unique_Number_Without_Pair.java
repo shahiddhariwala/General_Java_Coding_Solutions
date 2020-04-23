@@ -29,7 +29,7 @@ package bitMasking;
 
 import java.util.Scanner;
 
-public class Program_To_Find_Unique_Number_Without_Pair
+public class Program_To_Find_A_Unique_Number_Without_Pair
 {
 
 	public static void main(String[] args)
