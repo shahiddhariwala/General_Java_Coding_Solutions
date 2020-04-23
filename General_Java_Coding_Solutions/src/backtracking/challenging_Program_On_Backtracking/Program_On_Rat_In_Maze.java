@@ -35,7 +35,7 @@ Sample Output
 0 1 1 1 
 0 0 0 1 
 */
-package challenging_Program_On_Backtracking;
+package backtracking.challenging_Program_On_Backtracking;
 
 import java.util.Scanner;
 

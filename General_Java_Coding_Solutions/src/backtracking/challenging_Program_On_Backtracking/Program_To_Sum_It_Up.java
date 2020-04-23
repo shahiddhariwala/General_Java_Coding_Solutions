@@ -41,7 +41,7 @@ ans
 7 21 62 
 28 62 
 */
-package challenging_Program_On_Backtracking;
+package backtracking.challenging_Program_On_Backtracking;
 
 import java.util.Arrays;
 import java.util.Comparator;

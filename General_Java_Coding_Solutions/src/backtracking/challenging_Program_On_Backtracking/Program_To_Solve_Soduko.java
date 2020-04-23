@@ -47,7 +47,7 @@
  * 3 4 5 2 8 6 1 7 9
  */
 
-package challenging_Program_On_Backtracking;
+package backtracking.challenging_Program_On_Backtracking;
 
 import java.util.Scanner;
 
