@@ -5,11 +5,13 @@ Twitter  : https://twitter.com/shahiddhariwala
 */
 
 /*
- We are given an array containg n numbers. All the numbers are present twice except for one number 
- which is only present once. Find the unique number without taking any extra spaces and in linear time. ( Hint - Use Bitwise )
+We are given an array containg n numbers. All the numbers are present twice except for one number 
+which is only present once. Find the unique number without taking any extra spaces and in linear time.
+( Hint - Use Bitwise )
 
 Input Format
-First line contains the number n. Second line contains n space separated number.
+First line contains the number n. 
+Second line contains n space separated number.
 
 Constraints
 n < 10^5
@@ -24,6 +26,7 @@ Sample Output
 4
 Explanation
 4 is present only once
+
 */
 package bitMasking;
 
