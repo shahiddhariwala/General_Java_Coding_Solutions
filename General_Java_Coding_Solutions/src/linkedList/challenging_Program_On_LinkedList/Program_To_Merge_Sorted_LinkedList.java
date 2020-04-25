@@ -375,17 +375,32 @@ public class Program_To_Merge_Sorted_LinkedList
 
 		public void merge_sorted_list(LinkedList other) throws Exception
 		{
-			
-			Node head1 = this.head;
-			Node head2 = other.head;
-			
-			while(head1!=null && head2!=null)
+			Node temp1 = this.head;
+			Node temp2 = other.head;
+			LinkedList newList = new LinkedList();
+			while(temp1 != null && temp2 != null)
 			{
-				if(head1.data>head2.data)
+				if(temp1.data > temp2.data)
 				{
-				
+					newList.addLast(temp2.data);
+					temp2=temp2.next;
+				}
+				else{
+					newList.addLast(temp1.data);
+					temp1=temp1.next;
 				}
 			}
+			while(temp1!=null)
+			{
+				newList.addLast(temp1.data);
+				temp1=temp1.next;
+			}
+			while(temp2!=null)
+			{
+				newList.addLast(temp2.data);
+				temp2=temp2.next;
+			}
+			this.head = newList.head;
 		}
 
 	}
@@ -418,7 +433,7 @@ public class Program_To_Merge_Sorted_LinkedList
 				list2.addLast(item);
 			}
 			list1.merge_sorted_list(list2);
-
+			list1.display();
 			t--;
 		}
 

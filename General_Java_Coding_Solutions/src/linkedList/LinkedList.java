@@ -6,6 +6,7 @@ Twitter  : https://twitter.com/shahiddhariwala
 
 package linkedList;
 
+
 public class LinkedList
 {
 	private Node head;
@@ -312,7 +313,63 @@ public class LinkedList
 		}
 		return slow.data;
 	}
+	public void kReverse(int k) throws Exception
+	{
+		if (this.size() <= 1 || k <= 1)
+		{
+			return;
+		}
+		int i = 0;
+		while (i < this.size())
+		{
 
+			int left = i;
+			int right = i + k - 1;
+			while (left < right)
+			{
+				Node leftNode = getNodeAt(left);
+				Node rightNode = getNodeAt(right);
+
+				int temp = leftNode.data;
+				leftNode.data = rightNode.data;
+				rightNode.data = temp;
+				left++;
+				right--;
+			}
+			i = i + k;
+		}
+
+	}
+
+	public void merge_sorted_list(LinkedList other) throws Exception
+	{
+		Node temp1 = this.head;
+		Node temp2 = other.head;
+		LinkedList newList = new LinkedList();
+		while(temp1 != null && temp2 != null)
+		{
+			if(temp1.data > temp2.data)
+			{
+				newList.addLast(temp2.data);
+				temp2=temp2.next;
+			}
+			else{
+				newList.addLast(temp1.data);
+				temp1=temp1.next;
+			}
+		}
+		while(temp1!=null)
+		{
+			newList.addLast(temp1.data);
+			temp1=temp1.next;
+		}
+		while(temp2!=null)
+		{
+			newList.addLast(temp2.data);
+			temp2=temp2.next;
+		}
+		this.head = newList.head;
+	}
 }
 
 /* https://github.com/shahiddhariwala */
