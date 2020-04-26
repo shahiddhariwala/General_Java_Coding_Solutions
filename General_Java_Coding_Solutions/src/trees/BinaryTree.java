@@ -6,9 +6,11 @@ Twitter  : https://twitter.com/shahiddhariwala
 
 package trees;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class BinaryTree
 {
@@ -193,6 +195,92 @@ public class BinaryTree
 			}
 		}
 		System.out.println();
+	}
+
+	public boolean isBST()
+	{
+
+		return isBST(this.root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+
+	}
+
+	private boolean isBST(Node node, int minValue, int maxValue)
+	{
+		if (node == null)
+			return true;
+
+		if (node.data >= minValue && node.data <= maxValue)
+		{
+			boolean leftCheck = isBST(node.left, minValue, node.data);
+			boolean rightCheck = isBST(node.right, node.data, maxValue);
+			if (leftCheck && rightCheck)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean isBST2()
+	{
+		// We know that if given tree is BSt then its inOrderTraversal will be in sorted
+		// order
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		fillInorderArray(arr, this.root);
+		for (int i = 0; i < arr.size() - 1; i++)
+		{
+			if (arr.get(i) > arr.get(i + 1))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private void fillInorderArray(ArrayList<Integer> arr, Node node)
+	{
+		if (node == null)
+		{
+			return;
+		}
+
+		fillInorderArray(arr, node.left);
+		arr.add(node.data);
+		fillInorderArray(arr, node.right);
+
+	}
+
+	public void iterativeInorderTraversal()
+	{
+		if(this.root==null)
+			return;
+		System.out.print("Iterative Inorder Traversal :\t");
+		Stack<Node> stack = new Stack<Node>();
+		ArrayList<Integer> al = new ArrayList<Integer>();
+		Node node = this.root;
+
+		while (true)
+		{
+			if (node != null)
+			{
+				stack.push(node);
+				node = node.left;
+			} else
+			{
+				if(stack.isEmpty())
+				{
+					break;
+				}
+				Node temp = stack.pop();
+				al.add(temp.data);
+				node = temp.right;
+
+			}
+			
+
+		}
+		System.out.print(al);
+
 	}
 }
 
