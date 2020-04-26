@@ -252,7 +252,7 @@ public class BinaryTree
 
 	public void iterativeInorderTraversal()
 	{
-		if(this.root==null)
+		if (this.root == null)
 			return;
 		System.out.print("Iterative Inorder Traversal :\t");
 		Stack<Node> stack = new Stack<Node>();
@@ -267,7 +267,7 @@ public class BinaryTree
 				node = node.left;
 			} else
 			{
-				if(stack.isEmpty())
+				if (stack.isEmpty())
 				{
 					break;
 				}
@@ -276,10 +276,30 @@ public class BinaryTree
 				node = temp.right;
 
 			}
-			
 
 		}
 		System.out.print(al);
+
+	}
+
+	public int sumOfLeafNodes()
+	{
+		return this.sumOfLeadNodes(this.root);
+	}
+
+	private int sumOfLeadNodes(Node node)
+	{
+		if (node == null)
+			return 0;
+		if (node.left == null && node.right == null)
+		{
+			// if tis leaf node then add it to sum
+			return node.data;
+		}
+
+		int leftLeafs = this.sumOfLeadNodes(node.left);
+		int rightLeafs = this.sumOfLeadNodes(node.right);
+		return leftLeafs + rightLeafs;
 
 	}
 }
