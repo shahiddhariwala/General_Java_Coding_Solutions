@@ -35,8 +35,8 @@ public class BinarySearchTree
 
 	public BinarySearchTree()
 	{
-		this.root=null;
-		this.size=0;
+		this.root = null;
+		this.size = 0;
 	}
 
 	private Node construct(int[] arr, int low, int high)
@@ -77,6 +77,58 @@ public class BinarySearchTree
 
 		return node;
 
+	}
+
+	public void remove(int val)
+	{
+		this.root = this.remove(this.root, val);
+
+	}
+
+	private Node remove(Node node, int val)
+	{
+		if (node == null)
+		{
+			System.out.println("Value not found ");
+			return null;
+		}
+
+		if (val < node.data)
+		{
+			node.left = remove(node.left, val);
+		} else if (val > node.data)
+		{
+			node.right = remove(node.right, val);
+		} else
+		{
+			// value found
+			if (node.left == null && node.right == null)
+			{
+				// if its leaf node , then just delete it
+				node = null;
+
+			} else if (node.left == null || node.right == null)
+			{
+				// if one child is present
+				if (node.left == null)
+				{
+					node = node.right;
+				} else if (node.right == null)
+				{
+					node = node.left;
+				}
+
+			} else
+			{
+				// if two child , we have two option to find samllest from right subtree of it
+				// or find maximum from left subtree and replace it with node to be removed
+				Node maxFromLeft = this.max(node.left);
+				node.data = maxFromLeft.data;
+				this.remove(node.left, maxFromLeft.data);
+				// remove that max node from left substree
+			}
+		}
+		return node;
 	}
 
 	public int size()
@@ -231,14 +283,14 @@ public class BinarySearchTree
 
 	public int max()
 	{
-		return max(this.root);
+		return max(this.root).data;
 	}
 
-	private int max(Node node)
+	private Node max(Node node)
 	{
 		if (node.right == null)
 		{
-			return node.data;
+			return node;
 		}
 
 		// We know in BST Larger value is always at right
