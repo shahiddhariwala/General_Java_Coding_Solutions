@@ -32,11 +32,11 @@ public class HashTable<K, V>
 
 		public String toString()
 		{
-			return "{" + this.key + "," + this.value + "}";
+			return "{" + this.key + "=" + this.value + "}";
 		}
 	}
 
-	private final static int DEFAULT_CAPACITY = 10;
+	private final static int DEFAULT_CAPACITY = 5;
 	private LinkedList<HTPair>[] bucketArray;
 	private int size;
 
@@ -65,34 +65,85 @@ public class HashTable<K, V>
 		} else
 		{
 			// we will use direct chanining
-			if(bucket.contains(pta))
+			if (bucket.contains(pta))
 			{
 				bucket.remove(pta);
 				bucket.addLast(pta);
-			}else
+			} else
 			{
 				bucket.addLast(pta);
 				this.size++;
 			}
 		}
 	}
+
+	public V get(K key)
+	{
+		int getIndex = getHash(key);
+		LinkedList<HTPair> bucket = this.bucketArray[getIndex];
+		if (bucket != null && !bucket.isEmpty())
+		{
+
+			for (HTPair pair : bucket)
+			{
+				if (pair.key == key)
+				{
+					return pair.value;
+				}
+			}
+		}
+		return null;
+	}
+	public V remove(K key)
+	{
+		int getIndex = getHash(key);
+		LinkedList<HTPair> bucket = this.bucketArray[getIndex];
+		if (bucket != null && !bucket.isEmpty())
+		{
+
+			int count=-1;
+			for (HTPair pair : bucket)
+			{
+				count++;
+				if (pair.key == key)
+				{
+					bucket.remove(count);
+					this.size--;
+					return pair.value;
+				}
+				
+			}
+		}
+		return null;
+	}
+
+	public int size()
+	{
+		return this.size;
+	}
 	public void display()
 	{
-		for(LinkedList<HTPair> bucket : this.bucketArray)
+		for (LinkedList<HTPair> bucket : this.bucketArray)
 		{
-			for(HTPair mapEntry : bucket)
+			if (bucket != null && !bucket.isEmpty())
 			{
-				System.out.print(mapEntry+" ");
+				for (HTPair mapEntry : bucket)
+				{
+					System.out.print(mapEntry + "=>");
+				}
+				System.out.println("END");
+			} else
+			{
+				System.out.println("NULL");
 			}
 		}
 		System.out.println();
 	}
-	
 
 	private int getHash(K key)
 	{
 
-		return Math.abs(key.hashCode()) % this.size;
+		return Math.abs(key.hashCode()) % this.bucketArray.length;
 	}
 }
 
