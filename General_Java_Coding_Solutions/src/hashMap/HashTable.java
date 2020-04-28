@@ -75,6 +75,30 @@ public class HashTable<K, V>
 				this.size++;
 			}
 		}
+
+		double loadFactor = (this.size * 1.0) / this.bucketArray.length;
+		if (loadFactor > 0.75)
+		{
+			this.rehash();
+		}
+	}
+
+	private void rehash()
+	{
+		LinkedList<HTPair>[] oba = this.bucketArray;
+
+		this.bucketArray = (LinkedList<HTPair>[]) new LinkedList[2 * oba.length];
+
+		for (LinkedList<HTPair> list : oba)
+		{
+			while (list != null && !list.isEmpty())
+			{
+				HTPair entry = list.removeFirst();
+				this.put(entry.key, entry.value);
+
+			}
+		}
+
 	}
 
 	public V get(K key)
@@ -94,6 +118,7 @@ public class HashTable<K, V>
 		}
 		return null;
 	}
+
 	public V remove(K key)
 	{
 		int getIndex = getHash(key);
@@ -101,7 +126,7 @@ public class HashTable<K, V>
 		if (bucket != null && !bucket.isEmpty())
 		{
 
-			int count=-1;
+			int count = -1;
 			for (HTPair pair : bucket)
 			{
 				count++;
@@ -111,7 +136,7 @@ public class HashTable<K, V>
 					this.size--;
 					return pair.value;
 				}
-				
+
 			}
 		}
 		return null;
@@ -121,6 +146,7 @@ public class HashTable<K, V>
 	{
 		return this.size;
 	}
+
 	public void display()
 	{
 		for (LinkedList<HTPair> bucket : this.bucketArray)
@@ -143,7 +169,10 @@ public class HashTable<K, V>
 	private int getHash(K key)
 	{
 
-		return Math.abs(key.hashCode()) % this.bucketArray.length;
+		int hc = key.hashCode();
+		hc = Math.abs(hc);
+		int bi = hc % this.bucketArray.length;
+		return bi;
 	}
 }
 
