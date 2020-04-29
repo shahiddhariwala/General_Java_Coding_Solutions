@@ -15,9 +15,10 @@ public class Heap<T extends Comparable<T>>
 
 	Heap()
 	{
-		this.dataList = new LinkedList<T>();
+		this.dataList = new LinkedList<T>(); 
 	}
 
+	//O(logN)
 	public void add(T data)
 	{
 		this.dataList.addLast(data);
@@ -46,6 +47,7 @@ public class Heap<T extends Comparable<T>>
 		this.dataList.set(parentIndex, ChildData);
 	}
 
+	//O(logN)
 	public T remove()
 	{
 		T reovedElemnent = this.dataList.getFirst();
@@ -97,6 +99,10 @@ public class Heap<T extends Comparable<T>>
 	public int size()
 	{
 		return this.dataList.size();
+	}
+	public boolean isEmpty()
+	{
+		return this.dataList.size()==0;
 	}
 
 }
