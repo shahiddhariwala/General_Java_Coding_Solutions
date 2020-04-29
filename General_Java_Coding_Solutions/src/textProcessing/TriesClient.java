@@ -22,17 +22,45 @@ public class TriesClient
 		trie.add("amit");
 		trie.display();
 		System.out.println(trie.numWords());
+		/*
+		 * amit
+		 * art
+		 * arts
+		 * boy
+		 * bug
+		 * sea
+		 * see
+		 * seen
+		 * 8
+		 */
 		System.out.println("********************************");
 		trie.add("art");// checking for duplicates
 		trie.display();
 		System.out.println(trie.numWords());
-
+		/*
+		 * ********************************
+		 * amit
+		 * art
+		 * arts
+		 * boy
+		 * bug
+		 * sea
+		 * see
+		 * seen
+		 * 8
+		 */
 		System.out.println("********************************");
 		System.out.println(trie.search("art"));
 		System.out.println(trie.search("arts"));
 		System.out.println(trie.search("arpit"));
 		System.out.println(trie.search("artsy"));
-
+		/*
+		 * ********************************
+		 * true
+		 * true
+		 * false
+		 * false
+		 */
 		System.out.println("*********************");
 
 		trie.remove("arts");
@@ -42,6 +70,16 @@ public class TriesClient
 		trie.display();
 
 		System.out.println(trie.numWords());
+		/*
+		 * *********************
+		 * amit
+		 * boy
+		 * bug
+		 * sea
+		 * see
+		 * seen
+		 * 6
+		 */
 
 	}
 
