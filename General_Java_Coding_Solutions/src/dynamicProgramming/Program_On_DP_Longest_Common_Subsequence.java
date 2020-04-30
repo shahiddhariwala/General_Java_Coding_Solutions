@@ -48,6 +48,7 @@ public class Program_On_DP_Longest_Common_Subsequence
 
 	}
 
+	//O(2^(s1 length+s2 length))
 	private static int getLCSDNC(String str1, String str2, int index1, int index2)
 	{
 		if (index1 >= str1.length() || index2 >= str2.length())
