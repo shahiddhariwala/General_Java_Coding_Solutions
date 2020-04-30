@@ -29,7 +29,7 @@ public class Program_To_Count_Total_Number_Of_Binary_String_DP
 		// consecutive 1's present inside Binary Strings
 		// N =2 , {0 0 , 1 0 , 1 1 , 0 1} ans = 3 {0 0 , 1 0 , 0 1} 1 1 not inlcude
 		// since we have consecutive 1s
-		int n = 10;
+		int n = 25;
 		startAlgo();
 		System.out.println(countBinaryStringsDNC(n, 0, ""));
 		endAlgo();
@@ -187,17 +187,21 @@ public class Program_To_Count_Total_Number_Of_Binary_String_DP
 		 * 144
 		 * Excecution Time : 0ms
 		 * 
+		 * 196418
+		 * Excecution Time : 144ms
+		 * 196418
+		 * Excecution Time : 0ms
 		 */
 
 	}
 
-	//O(2^n) it will perform very bad for 
+	// O(2^n) it will perform very bad for
 	private static long countBinaryStringsDNC(int n, int len, String stringSoFar)
 	{
 
 		if (n == len)
 		{
-			//System.out.println(stringSoFar);
+			// System.out.println(stringSoFar);
 			return 1;
 		}
 
@@ -211,7 +215,7 @@ public class Program_To_Count_Total_Number_Of_Binary_String_DP
 		return endWithzeros + endWithOnes;
 	}
 
-	//O(n)
+	// O(n)
 	private static long countBinaryStringsBottomUp(int n)
 	{
 		// Its like a fibonacci series
