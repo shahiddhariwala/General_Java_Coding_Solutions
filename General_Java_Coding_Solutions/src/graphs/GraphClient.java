@@ -101,6 +101,17 @@ public class GraphClient
 		 * 6
 		 */
 
+		// hasPath
+		System.out.println("---------------------------------------------------------------------");
+		System.out.println("hasPath b/w B&D " + graph.hasPath("B", "D"));
+		System.out.println("hasPath b/w B&H " + graph.hasPath("B", "H"));
+		System.out.println("hasPath b/w B&G " + graph.hasPath("B", "G"));
+		/*
+		 * ---------------------------------------------------------------------
+		 * hasPath b/w B&D true
+		 * hasPath b/w B&H false
+		 * hasPath b/w B&G true
+		 */
 	}
 
 }

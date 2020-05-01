@@ -121,6 +121,44 @@ public class Graph
 		}
 		System.out.println("---------------------------------------------------------------------");
 	}
+
+	public boolean hasPath(String sourceVertex, String destinationVertex, HashMap<String, Boolean> processed)
+	{
+
+		Vertex sv = this.vertices.get(sourceVertex);
+		Vertex dv = this.vertices.get(destinationVertex);
+		if (sv == null || dv == null)
+		{
+			// vertex does not exist
+			return false;
+		}
+
+		processed.put(sourceVertex, true);
+		if (this.containsEdge(sourceVertex, destinationVertex))
+		{
+			// checking direct edge
+			return true;
+		}
+
+		// Traverse Neighbors
+		ArrayList<String> keys = new ArrayList<>(sv.neighbors.keySet());
+		for (String key : keys)
+		{
+			//if Node is not processed , then recurs, this is done to avoid the infinite recursion
+			if (!processed.containsKey(key) && this.hasPath(key, destinationVertex, processed))
+			{
+				return true;
+			}
+		}
+		return false;
+
+	}
+
+	public boolean hasPath(String sourceVertex, String destinationVertex)
+	{
+
+		return this.hasPath(sourceVertex, destinationVertex, new HashMap<String, Boolean>());
+	}
 }
 
 /* https://github.com/shahiddhariwala */
