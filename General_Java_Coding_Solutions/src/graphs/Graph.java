@@ -8,12 +8,15 @@ package graphs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Queue;
 import java.util.Set;
 
 public class Graph
 {
+
 	private class Vertex
 	{
 		HashMap<String, Integer> neighbors = new HashMap<>();
@@ -144,7 +147,8 @@ public class Graph
 		ArrayList<String> keys = new ArrayList<>(sv.neighbors.keySet());
 		for (String key : keys)
 		{
-			//if Node is not processed , then recurs, this is done to avoid the infinite recursion
+			// if Node is not processed , then recurs, this is done to avoid the infinite
+			// recursion
 			if (!processed.containsKey(key) && this.hasPath(key, destinationVertex, processed))
 			{
 				return true;
@@ -158,6 +162,177 @@ public class Graph
 	{
 
 		return this.hasPath(sourceVertex, destinationVertex, new HashMap<String, Boolean>());
+	}
+
+	public void bfsDisplay(String sourceVertex)
+	{
+		// we will be getting all nodes from this source in bfs fashion
+		if (this.containsVertex(sourceVertex))
+		{
+			HashMap<String, Boolean> processed = new HashMap<String, Boolean>();
+			Queue<String> q = new LinkedList<String>();
+			StringBuilder stringSoFar = new StringBuilder();
+			q.add(sourceVertex);
+			while (!q.isEmpty())
+			{
+				String key = q.remove();
+				if (!processed.containsKey(key))
+				{
+					stringSoFar.append(key + ", ");
+					Vertex keyVertex = this.vertices.get(key);
+					processed.put(key, true);
+					ArrayList<String> neighbors = new ArrayList<String>(keyVertex.neighbors.keySet());
+					for (String neighbor : neighbors)
+					{
+
+						q.add(neighbor);
+
+					}
+				}
+
+			}
+			stringSoFar.append("END");
+			System.out.println("---------------------------------------------------------------------");
+			System.out.println(stringSoFar.toString());
+			System.out.println("---------------------------------------------------------------------");
+		} else
+		{
+			System.out.println("Vertex does not Exist");
+		}
+	}
+
+	private class Pair
+	{
+
+		String vertexName;
+		String pathSoFar;
+	}
+
+	public boolean bfs(String sourceVertex, String destinationVertex)
+	{
+		HashMap<String, Boolean> processed = new HashMap<>();
+
+		Queue<Pair> queue = new LinkedList<>();
+
+		// create a new pair
+		Pair sp = new Pair();
+		sp.vertexName = sourceVertex;
+		sp.pathSoFar = sourceVertex;
+
+		// put the new pair in queue
+		queue.add(sp);
+
+		// while queue is not empty keep on doing the work
+		while (!queue.isEmpty())
+		{
+
+			// remove a pair from queue
+			Pair rp = queue.remove();
+
+			if (processed.containsKey(rp.vertexName))
+			{
+				continue;
+			}
+
+			// processed put
+			processed.put(rp.vertexName, true);
+
+			// direct edge
+			if (containsEdge(rp.vertexName, destinationVertex))
+			{
+				System.out.println(rp.pathSoFar + destinationVertex);
+				return true;
+			}
+
+			// nighbors
+			Vertex rpvtx = this.vertices.get(rp.vertexName);
+			ArrayList<String> neighbors = new ArrayList<>(rpvtx.neighbors.keySet());
+
+			// loop on nbrs
+			for (String neighbor : neighbors)
+			{
+
+				// process only unprocessed nbrs
+				if (!processed.containsKey(neighbor))
+				{
+
+					// make a new pair of nbr and put in queue
+					Pair np = new Pair();
+					np.vertexName = neighbor;
+					np.pathSoFar = rp.pathSoFar + neighbor;
+
+					queue.add(np);
+				}
+			}
+
+		}
+
+		return false;
+
+	}
+
+	public void bft()
+	{
+
+		HashMap<String, Boolean> processed = new HashMap<>();
+
+		Queue<Pair> queue = new LinkedList<>();
+
+		ArrayList<String> keys = new ArrayList<>(this.vertices.keySet());
+
+		System.out.println("---------------------------------------------------------------------");
+		for (String key : keys)
+		{
+
+			if (processed.containsKey(key))
+			{
+				continue;
+			}
+			// create a new pair
+			Pair sp = new Pair();
+			sp.vertexName = key;
+			sp.pathSoFar = key;
+
+			// put the new pair in queue
+			queue.add(sp);
+
+			// while queue is not empty keep on doing the work
+			while (!queue.isEmpty())
+			{
+
+				// remove a pair from queue
+				Pair rp = queue.remove();
+
+				// processed put
+				processed.put(rp.vertexName, true);
+
+				// syso
+				System.out.println("Reaching "+rp.vertexName + " via " + rp.pathSoFar);
+
+				// neighbors
+				Vertex rpvtx = this.vertices.get(rp.vertexName);
+				ArrayList<String> neighbors = new ArrayList<>(rpvtx.neighbors.keySet());
+
+				// loop on nbrs
+				for (String neighbor : neighbors)
+				{
+
+					// process only unprocessed nbrs
+					if (!processed.containsKey(neighbor))
+					{
+
+						// make a new pair of nbr and put in queue
+						Pair np = new Pair();
+						np.vertexName = neighbor;
+						np.pathSoFar = rp.pathSoFar + neighbor;
+
+						queue.add(np);
+					}
+				}
+
+			}
+		}
+		System.out.println("---------------------------------------------------------------------");
 	}
 }
 

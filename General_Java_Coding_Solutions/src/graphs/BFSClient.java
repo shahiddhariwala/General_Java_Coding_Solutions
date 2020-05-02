@@ -6,7 +6,7 @@ Twitter  : https://twitter.com/shahiddhariwala
 
 package graphs;
 
-public class GraphClient
+public class BFSClient
 {
 
 	public static void main(String[] args)
@@ -46,74 +46,53 @@ public class GraphClient
 		 * G : {E=8, F=6}
 		 * ---------------------------------------------------------------------
 		 */
-
-		// numEdge numVertex
-		System.out.println(graph.numEdges());
-		System.out.println(graph.numVertex());
+		// BFS Client
+		// BFS gives shortest path for unweighted graph
+		graph.bfsDisplay("A");
 		/*
-		 * 8
-		 * 7
+		 * ---------------------------------------------------------------------
+		 * A, B, D, C, E, F, G, END
+		 * ---------------------------------------------------------------------
 		 */
 
-		// containsEdge
-		System.out.println(graph.containsEdge("B", "G"));
-		System.out.println(graph.containsEdge("B", "C"));
+		// bfs(v1,v2)
+		System.out.println(graph.bfs("A", "G"));
 		/*
-		 * false
+		 * ADEG
 		 * true
 		 */
-		// removeEdge
-		graph.removeEdge("B", "C");
-		graph.display();
-		System.out.println(graph.numEdges());
-		System.out.println(graph.numVertex());
+
+		// bft
+		graph.bft();
 		/*
 		 * ---------------------------------------------------------------------
-		 * Vertex Neighbors
-		 * A : {B=2, D=3}
-		 * B : {A=2}
-		 * C : {D=7}
-		 * D : {A=3, C=7, E=10}
-		 * E : {D=10, F=9, G=8}
-		 * F : {E=9, G=6}
-		 * G : {E=8, F=6}
+		 * Reaching A via A
+		 * Reaching B via AB
+		 * Reaching D via AD
+		 * Reaching C via ABC
+		 * Reaching C via ADC
+		 * Reaching E via ADE
+		 * Reaching F via ADEF
+		 * Reaching G via ADEG
+		 * Reaching G via ADEFG
 		 * ---------------------------------------------------------------------
-		 * 7
-		 * 7
+		 */
+		graph.removeEdge("D", "E");
+		graph.bft();
+		/*
+		 * ---------------------------------------------------------------------
+		 * Reaching A via A
+		 * Reaching B via AB
+		 * Reaching D via AD
+		 * Reaching C via ABC
+		 * Reaching C via ADC
+		 * Reaching E via E
+		 * Reaching F via EF
+		 * Reaching G via EG
+		 * Reaching G via EFG
+		 * ---------------------------------------------------------------------
 		 */
 
-		// removeVertex
-		graph.removeVertex("C");
-		graph.display();
-		System.out.println(graph.numEdges());
-		System.out.println(graph.numVertex());
-		/*
-		 * ---------------------------------------------------------------------
-		 * Vertex Neighbors
-		 * A : {B=2, D=3}
-		 * B : {A=2}
-		 * D : {A=3, E=10}
-		 * E : {D=10, F=9, G=8}
-		 * F : {E=9, G=6}
-		 * G : {E=8, F=6}
-		 * ---------------------------------------------------------------------
-		 * 6
-		 * 6
-		 */
-
-		// hasPath
-		System.out.println("---------------------------------------------------------------------");
-		System.out.println("hasPath b/w B&D " + graph.hasPath("B", "D"));
-		System.out.println("hasPath b/w B&H " + graph.hasPath("B", "H"));
-		System.out.println("hasPath b/w B&G " + graph.hasPath("B", "G"));
-		/*
-		 * ---------------------------------------------------------------------
-		 * hasPath b/w B&D true
-		 * hasPath b/w B&H false
-		 * hasPath b/w B&G true
-		 */
-		
-		
 	}
 
 }
