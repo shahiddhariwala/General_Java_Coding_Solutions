@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Set;
+import java.util.Stack;
 
 public class Graph
 {
@@ -307,7 +308,7 @@ public class Graph
 				processed.put(rp.vertexName, true);
 
 				// syso
-				System.out.println("Reaching "+rp.vertexName + " via " + rp.pathSoFar);
+				System.out.println("Reaching " + rp.vertexName + " via " + rp.pathSoFar);
 
 				// neighbors
 				Vertex rpvtx = this.vertices.get(rp.vertexName);
@@ -333,6 +334,137 @@ public class Graph
 			}
 		}
 		System.out.println("---------------------------------------------------------------------");
+	}
+
+	public boolean dfs(String sourceVertex, String destinationVertex)
+	{
+		HashMap<String, Boolean> processed = new HashMap<>();
+
+		Stack<Pair> stack = new Stack<>();
+
+		// create a new pair
+		Pair sp = new Pair();
+		sp.vertexName = sourceVertex;
+		sp.pathSoFar = sourceVertex;
+
+		// put the new pair in queue
+		stack.push(sp);
+
+		// while queue is not empty keep on doing the work
+		while (!stack.isEmpty())
+		{
+
+			// remove a pair from stack
+			Pair rp = stack.pop();
+
+			if (processed.containsKey(rp.vertexName))
+			{
+				continue;
+			}
+
+			// processed put
+			processed.put(rp.vertexName, true);
+
+			// direct edge
+			if (containsEdge(rp.vertexName, destinationVertex))
+			{
+				System.out.println(rp.pathSoFar + destinationVertex);
+				return true;
+			}
+
+			// neighbors
+			Vertex rpvtx = this.vertices.get(rp.vertexName);
+			ArrayList<String> neighbors = new ArrayList<>(rpvtx.neighbors.keySet());
+
+			// loop on nbrs
+			for (String neighbor : neighbors)
+			{
+
+				// process only unprocessed nbrs
+				if (!processed.containsKey(neighbor))
+				{
+
+					// make a new pair of nbr and put in queue
+					Pair np = new Pair();
+					np.vertexName = neighbor;
+					np.pathSoFar = rp.pathSoFar + neighbor;
+
+					stack.push(np);
+				}
+			}
+
+		}
+
+		return false;
+
+	}
+
+	public void dft()
+	{
+		HashMap<String, Boolean> processed = new HashMap<>();
+		ArrayList<String> keys = new ArrayList<String>(this.vertices.keySet());
+
+		System.out.println("---------------------------------------------------------------------");
+		for (String key : keys)
+		{
+
+			Stack<Pair> stack = new Stack<>();
+			if (processed.containsKey(key))
+			{
+				continue;
+			}
+
+			// create a new pair
+			Pair sp = new Pair();
+			sp.vertexName = key;
+			sp.pathSoFar = key;
+
+			// put the new pair in queue
+			stack.push(sp);
+
+			// while queue is not empty keep on doing the work
+			while (!stack.isEmpty())
+			{
+
+				// remove a pair from stack
+				Pair rp = stack.pop();
+
+				if (processed.containsKey(rp.vertexName))
+				{
+					continue;
+				}
+
+				// processed put
+				processed.put(rp.vertexName, true);
+
+				// syso
+				System.out.println("Reaching " + rp.vertexName + " via " + rp.pathSoFar);
+
+				// neighbors
+				Vertex rpvtx = this.vertices.get(rp.vertexName);
+				ArrayList<String> neighbors = new ArrayList<>(rpvtx.neighbors.keySet());
+
+				// loop on nbrs
+				for (String neighbor : neighbors)
+				{
+
+					// process only unprocessed nbrs
+					if (!processed.containsKey(neighbor))
+					{
+
+						// make a new pair of nbr and put in queue
+						Pair np = new Pair();
+						np.vertexName = neighbor;
+						np.pathSoFar = rp.pathSoFar + neighbor;
+
+						stack.push(np);
+					}
+				}
+
+			}
+
+			System.out.println("---------------------------------------------------------------------");
+		}
 	}
 }
 
