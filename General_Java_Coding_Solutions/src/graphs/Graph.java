@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
@@ -466,6 +465,94 @@ public class Graph
 			System.out.println("---------------------------------------------------------------------");
 		}
 	}
+
+	public boolean isCyclic()
+	{
+		HashMap<String, Boolean> processed = new HashMap<>();
+		Queue<String> queue = new LinkedList<>();
+
+		ArrayList<String> keys = new ArrayList<>(this.vertices.keySet());
+
+		for (String key : keys)
+		{
+			if (processed.containsKey(key))
+			{
+				continue;
+			}
+			queue.add(key);
+
+			while (!queue.isEmpty())
+			{
+				String removedKey = queue.remove();
+				Vertex removedVertex = this.vertices.get(removedKey);
+				if (processed.containsKey(removedKey))
+				{
+					return true;
+				}
+				processed.put(removedKey, true);
+				ArrayList<String> neighbors = new ArrayList<>(removedVertex.neighbors.keySet());
+				for (String neighbor : neighbors)
+				{
+					if (!processed.containsKey(neighbor))
+					{
+						queue.add(neighbor);
+					}
+
+				}
+
+			}
+		}
+		return false;
+	}
+
+	public boolean isConnected()
+	{
+		HashMap<String, Boolean> processed = new HashMap<>();
+		Queue<String> queue = new LinkedList<>();
+		int flag = 0;
+		ArrayList<String> keys = new ArrayList<>(this.vertices.keySet());
+
+		for (String key : keys)
+		{
+			if (processed.containsKey(key))
+			{
+				continue;
+			}
+			flag = flag + 1;
+
+			queue.add(key);
+
+			while (!queue.isEmpty())
+			{
+				String removedKey = queue.remove();
+				Vertex removedVertex = this.vertices.get(removedKey);
+				processed.put(removedKey, true);
+				ArrayList<String> neighbors = new ArrayList<>(removedVertex.neighbors.keySet());
+				for (String neighbor : neighbors)
+				{
+					if (!processed.containsKey(neighbor))
+					{
+						queue.add(neighbor);
+					}
+
+				}
+
+			}
+		}
+
+		if (flag > 1)
+		{
+			return false;
+		}
+		return true;
+	}
+
+	public boolean isTree()
+	{
+		
+		return (!this.isCyclic() && this.isConnected());
+	}
+
 }
 
 /* https://github.com/shahiddhariwala */
