@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Set;
 import java.util.Stack;
@@ -623,6 +624,85 @@ public class Graph
 			result.add(component);
 		}
 		return result;
+	}
+
+	private class PrimsPair implements Comparable<PrimsPair>
+	{
+		String vertexName;
+		String parent;
+		int cost;
+
+		@Override
+		public int compareTo(PrimsPair o)
+		{
+			return this.cost - o.cost;
+		}
+
+	}
+
+	public Graph prims()
+	{
+
+		Graph mst = new Graph();
+		HashMap<String, PrimsPair> map = new HashMap<>();
+
+		PriorityQueue<PrimsPair> heap = new PriorityQueue<>();
+
+		// make a pair and put in heap and map
+		for (String key : this.vertices.keySet())
+		{
+			PrimsPair newPair = new PrimsPair();
+			newPair.cost = Integer.MAX_VALUE;
+			newPair.parent = null;
+			// parent is from which vertex we came to this vertex
+			newPair.vertexName = key;
+			map.put(key, newPair);
+			heap.add(newPair);
+		}
+		// till the heap is not empty keep on removing the pairs
+		while (!heap.isEmpty())
+		{
+			//
+			PrimsPair removedPair = heap.remove();
+			map.remove(removedPair.vertexName);
+
+			// add to mst
+			if (removedPair.parent == null)
+			{
+				mst.addVertex(removedPair.vertexName);
+			} else
+			{
+				mst.addVertex(removedPair.vertexName);
+				mst.addEdge(removedPair.vertexName, removedPair.parent, removedPair.cost);
+			}
+
+			// neighbors
+			for (String neighbor : this.vertices.get(removedPair.vertexName).neighbors.keySet())
+			{
+				PrimsPair neighborPair = map.get(neighbor);
+				// work for neighbor which are in heap, map keeps the track of what should be
+				// considered in in heap or not
+				if (neighborPair != null)
+				{
+
+					int oldCost = neighborPair.cost;
+					int newCost = this.vertices.get(removedPair.vertexName).neighbors.get(neighborPair.vertexName);
+					if (newCost < oldCost)
+					{
+						neighborPair.parent = removedPair.vertexName;
+						neighborPair.cost = newCost;
+
+						// refresh the map and heap with updated data
+						heap.remove(neighborPair);
+						heap.add(neighborPair);
+						map.put(neighborPair.vertexName, neighborPair);
+					}
+				}
+			}
+		}
+
+		return mst;
+
 	}
 }
 
