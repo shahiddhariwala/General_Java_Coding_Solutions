@@ -704,6 +704,85 @@ public class Graph
 		return mst;
 
 	}
+
+	private class DijstraPair implements Comparable<DijstraPair>
+	{
+		String vertexName;
+		String pathSoFar;
+		int cost;
+
+		@Override
+		public int compareTo(DijstraPair o)
+		{
+			return this.cost - o.cost;
+		}
+
+	}
+
+	public HashMap<String, Integer> dijsktra(String src)
+	{
+
+		HashMap<String, Integer> ans = new HashMap<String, Integer>();
+		HashMap<String, DijstraPair> map = new HashMap<>();
+
+		PriorityQueue<DijstraPair> heap = new PriorityQueue<>();
+
+		// make a pair and put in heap and map
+		for (String key : this.vertices.keySet())
+		{
+			DijstraPair newPair = new DijstraPair();
+			if (!key.equals(src))
+			{
+				newPair.cost = Integer.MAX_VALUE;
+				newPair.pathSoFar = null;
+			} else
+			{
+				// for source reaching it will have cost 0
+				newPair.cost = 0;
+				newPair.pathSoFar = key;
+			}
+
+			// pathSoFar is from which path we came to this vertex
+			newPair.vertexName = key;
+			map.put(key, newPair);
+			heap.add(newPair);
+		}
+
+		while (!heap.isEmpty())
+		{
+			DijstraPair removedPair = heap.remove();
+			map.remove(removedPair.vertexName);
+
+			ans.put(removedPair.vertexName, removedPair.cost);
+
+			// neighbors
+			for (String neighbor : this.vertices.get(removedPair.vertexName).neighbors.keySet())
+			{
+				DijstraPair neighborPair = map.get(neighbor);
+				// work for neighbor which are in heap, map keeps the track of what should be
+				// considered in in heap or not
+				if (neighborPair != null)
+				{
+
+					int oldCost = neighborPair.cost;
+					int newCost = removedPair.cost
+							+	 this.vertices.get(removedPair.vertexName).neighbors.get(neighborPair.vertexName);
+					if (newCost < oldCost)
+					{
+						neighborPair.pathSoFar = removedPair.pathSoFar + neighborPair.vertexName;
+						neighborPair.cost = newCost;
+
+						// refresh the map and heap with updated data
+						heap.remove(neighborPair);
+						heap.add(neighborPair);
+						map.put(neighborPair.vertexName, neighborPair);
+					}
+				}
+			}
+
+		}
+		return ans;
+	}
 }
 
 /* https://github.com/shahiddhariwala */
