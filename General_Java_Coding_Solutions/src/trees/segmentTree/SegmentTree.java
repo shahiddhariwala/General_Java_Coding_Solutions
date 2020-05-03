@@ -56,15 +56,44 @@ public class SegmentTree
 	{
 		if (node.left == null && node.right == null)
 		{
-			System.out.printf("NULL => \t\t\tInterval [%d,%d], data = %d\t <= NULL \n", node.startInterval, node.endInterval,
-					node.data);
+			System.out.printf("NULL => \t\t\tInterval [%d,%d], data = %d\t <= NULL \n", node.startInterval,
+					node.endInterval, node.data);
 			return;
 		}
-		System.out.printf("Interval [%d,%d], data = %d => \tInterval [%d,%d], data = %d\t <= Interval [%d,%d], data = %d\n", node.left.startInterval, node.left.endInterval, node.left.data,
-				node.startInterval, node.endInterval, node.data, node.right.startInterval, node.right.endInterval,
-				node.right.data);
+		System.out.printf(
+				"Interval [%d,%d], data = %d => \tInterval [%d,%d], data = %d\t <= Interval [%d,%d], data = %d\n",
+				node.left.startInterval, node.left.endInterval, node.left.data, node.startInterval, node.endInterval,
+				node.data, node.right.startInterval, node.right.endInterval, node.right.data);
 		this.display(node.left);
 		this.display(node.right);
+	}
+
+	public int query(int qsi, int qei)
+	{
+
+		return this.query(this.root, qsi, qei);
+
+	}
+
+	private int query(Node node, int qsi, int qei)
+	{
+		if (node.startInterval >= qsi && node.endInterval <= qei)
+		{
+			// Case 1 : Node interval completely lies inside the query interval, therefore
+			// node will contribute its value to actual answer
+			return node.data;
+		} else if (node.startInterval > qei || node.endInterval < qsi)
+		{
+			// Case 2: Completely outside the query interval
+			return 0;// return default value of query
+		} else
+		{
+			//Case 3 :  overlapping case
+			int leftAns = this.query(node.left, qsi, qei);
+			int rightAns = this.query(node.right, qsi, qei);
+			return leftAns + rightAns;
+		}
+
 	}
 
 }

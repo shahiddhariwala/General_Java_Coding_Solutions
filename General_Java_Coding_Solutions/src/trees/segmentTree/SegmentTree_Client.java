@@ -31,7 +31,8 @@ public class SegmentTree_Client
 //				NULL => 						Interval [6,6], data = 4	 <= NULL 
 //				NULL => 						Interval [7,7], data = 9	 <= NULL 
 
-		
+		System.out.println("Sum of element [2-6] Interval "+st.query(2, 6));
+		System.out.println("Sum of element [1-5] Interval "+st.query(1, 5));
 	}
 
 }
