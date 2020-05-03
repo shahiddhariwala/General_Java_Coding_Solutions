@@ -302,7 +302,10 @@ public class Graph
 
 				// remove a pair from queue
 				Pair rp = queue.remove();
-
+				if (processed.containsKey(rp.vertexName))
+				{
+					continue;
+				}
 				// processed put
 				processed.put(rp.vertexName, true);
 
@@ -549,10 +552,78 @@ public class Graph
 
 	public boolean isTree()
 	{
-		
+
 		return (!this.isCyclic() && this.isConnected());
 	}
 
+	public ArrayList<ArrayList<String>> getConnectedComponent()
+	{
+
+		HashMap<String, Boolean> processed = new HashMap<>();
+
+		Queue<Pair> queue = new LinkedList<>();
+
+		ArrayList<String> keys = new ArrayList<>(this.vertices.keySet());
+		ArrayList<ArrayList<String>> result = new ArrayList<ArrayList<String>>();
+		for (String key : keys)
+		{
+
+			if (processed.containsKey(key))
+			{
+				continue;
+			}
+			// create a new pair
+			Pair sp = new Pair();
+			sp.vertexName = key;
+			sp.pathSoFar = key;
+
+			// put the new pair in queue
+			queue.add(sp);
+
+			ArrayList<String> component = new ArrayList<String>();
+			// while queue is not empty keep on doing the work
+			while (!queue.isEmpty())
+			{
+
+				// remove a pair from queue
+				Pair rp = queue.remove();
+
+				if (processed.containsKey(rp.vertexName))
+				{
+					continue;
+				}
+				// processed put
+				processed.put(rp.vertexName, true);
+
+				// syso
+				component.add(rp.vertexName);
+				// neighbors
+				Vertex rpvtx = this.vertices.get(rp.vertexName);
+				ArrayList<String> neighbors = new ArrayList<>(rpvtx.neighbors.keySet());
+
+				// loop on nbrs
+				for (String neighbor : neighbors)
+				{
+
+					// process only unprocessed nbrs
+					if (!processed.containsKey(neighbor))
+					{
+
+						// make a new pair of nbr and put in queue
+						Pair np = new Pair();
+						np.vertexName = neighbor;
+						np.pathSoFar = rp.pathSoFar + neighbor;
+
+						queue.add(np);
+					}
+				}
+
+			}
+
+			result.add(component);
+		}
+		return result;
+	}
 }
 
 /* https://github.com/shahiddhariwala */

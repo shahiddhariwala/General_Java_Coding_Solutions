@@ -6,6 +6,8 @@ Twitter  : https://twitter.com/shahiddhariwala
 
 package graphs;
 
+import java.util.ArrayList;
+
 public class IsCyclic_IsConnected_IsTree_Client
 {
 
@@ -71,9 +73,18 @@ public class IsCyclic_IsConnected_IsTree_Client
 		 * false
 		 */
 
+		// get connected components
+		System.out.println(graph.getConnectedComponent());
+		graph.addVertex("X");
+		System.out.println(graph.getConnectedComponent());
+		graph.removeVertex("X");
+		/*
+		 * [[A, B, D, C], [E, F, G]]
+		 * [[A, B, D, C], [E, F, G], [X]]
+		 */
+
 		// IsTree
 		// Tree is acyclic & single connected graph && also evert tree has N-1 edges
-
 		System.out.println(graph.isTree());
 		graph.addEdge("D", "E", 10);
 		graph.removeEdge("B", "C");
@@ -83,6 +94,7 @@ public class IsCyclic_IsConnected_IsTree_Client
 		 * false
 		 * true
 		 */
+
 	}
 
 }
