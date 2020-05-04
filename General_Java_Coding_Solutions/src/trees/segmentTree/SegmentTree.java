@@ -75,6 +75,7 @@ public class SegmentTree
 
 	}
 
+	// logN
 	private int query(Node node, int qsi, int qei)
 	{
 		if (node.startInterval >= qsi && node.endInterval <= qei)
@@ -88,12 +89,40 @@ public class SegmentTree
 			return 0;// return default value of query
 		} else
 		{
-			//Case 3 :  overlapping case
+			// Case 3 : overlapping case
 			int leftAns = this.query(node.left, qsi, qei);
 			int rightAns = this.query(node.right, qsi, qei);
 			return leftAns + rightAns;
 		}
 
+	}
+
+	// logN
+	public void update(int index, int data)
+	{
+
+		this.root.data = this.update(this.root, index, data);
+	}
+
+	private int update(Node node, int index, int data)
+	{
+
+		if (index >= node.startInterval && index <= node.endInterval)
+		{
+
+			if (index == node.startInterval && index == node.endInterval)
+			{
+				node.data = data;
+
+			} else
+			{
+				// Case 1: Check if index lies withing the my node intervals
+				node.left.data = this.update(node.left, index, data);
+				node.right.data = this.update(node.right, index, data);
+				node.data= node.left.data + node.right.data;
+			}
+		}
+		return node.data;
 	}
 
 }
