@@ -152,12 +152,12 @@ public class Program_To_Find_Strongest_Fighter_In_Window_Of_K
 			System.out.print(arr[dq.peekFirst()] + " ");
 
 			// remove elements which are not in current window
-			while (!dq.isEmpty() && dq.peekFirst() < i - k)
+			while (!dq.isEmpty() && dq.peekFirst() <= i - k)
 			{
 				dq.removeFirst();
 			}
 			// Remove unwanted elements
-			while (!dq.isEmpty() && arr[i] >= arr[dq.peekLast()])
+			while (!dq.isEmpty() && arr[i] > arr[dq.peekLast()])
 			{
 				dq.removeLast();
 			}
