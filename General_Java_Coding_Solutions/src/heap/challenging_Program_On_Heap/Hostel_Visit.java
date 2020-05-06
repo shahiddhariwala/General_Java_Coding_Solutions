@@ -114,16 +114,18 @@ public class Hostel_Visit
 		int numCases = sc.nextInt();
 		int k = sc.nextInt();
 		PriorityQueue<Long> pq = new PriorityQueue<>(Collections.reverseOrder());
+		long KthValue = Integer.MAX_VALUE;
+
 		for (int i = 1; i <= numCases; i++)
 		{
 
-			int type = sc.nextInt();
+			long type = sc.nextLong();
 			if (type == 1)
 			{
-				int x = sc.nextInt();
-				int y = sc.nextInt();
+				long x = sc.nextLong();
+				long y = sc.nextLong();
 				long dist = (x * x) + (y * y);
-				if (pq.size() == k)
+				if (pq.size() >= k)
 				{
 					if (pq.peek() > dist)
 					{
@@ -134,7 +136,7 @@ public class Hostel_Visit
 				{
 					pq.add(dist);
 				}
-				
+
 			} else
 			{
 				System.out.println(pq.peek());
