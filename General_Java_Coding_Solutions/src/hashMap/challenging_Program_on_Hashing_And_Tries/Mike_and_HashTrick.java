@@ -55,66 +55,74 @@ First iteration : hash[1] = 0. Second iteration : hash[2] = 0 + 1. Third iterati
  */
 package hashMap.challenging_Program_on_Hashing_And_Tries;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Scanner;
+
+import java.util.*;
 
 public class Mike_and_HashTrick
 {
-	public static int[] hash_array(int A[], int n)
-	{
-		int MAX = getMax(A);
-	    int[] hash = new int[MAX+1]; //MAX is the maximum possible value of A[i]
-	    for(int i=0;i<=MAX;i++) hash[i]=-1; //initialize hash to -1.
-	    int count = 0;
-	    for(int i=0;i<n;i++) // Loop through elements of array
-	    {
-	        if(hash[A[i]] == -1) // A[i] was not assigned any hash before
-	        {
-	            hash[A[i]] = count; // Assigning hash to A[i]
-	            count++;
-	            continue;
-	        }
-	        for(int j = 0;j<i;j++)
-	        {
-	            if(hash[A[j]] > hash[A[i]]) // All the hashes greater than previous hash of A[i] are decremented.
-	                hash[A[j]]--;
-	        }
-	        hash[A[i]] = count - 1; // Assigning a new hash to A[i]
-	    }
-	    return hash;
-	}
-
-	private static int getMax(int[] a)
-	{
-		int max=0;
-		for (int i = 0; i < a.length; i++)
-		{
-			if(a[i]>max)
-			{
-				max=a[i];
-			}
-				
-		}
-		return max;
-	}
-
-	public static void main(String[] args)
+	public static void main(String args[])
 	{
 		Scanner sc = new Scanner(System.in);
-		int num = sc.nextInt();
-		int arr[] = new int[num];
-		for (int i = 0; i < num; i++)
+		int n = sc.nextInt();
+		HashMap<Integer, Integer> map = new HashMap<>();
+		ArrayList<Integer> res = new ArrayList<>();
+		int arr[] = new int[n];
+		for (int i = 0; i < n; i++)
 		{
 			arr[i] = sc.nextInt();
 		}
-		int ans[] = hash_array(arr, num);
-		for(int i : ans)
+		for (int i = 0; i < n; i++)
 		{
-			System.out.println(i);
+			if (!map.containsKey(arr[i]))
+			{
+				map.put(arr[i], i);
+				res.add(arr[i]);
+			}
+
+			else
+			{
+				map.put(arr[i], i);
+			}
+
 		}
-		sc.close();
+
+		HashMap<Integer, Integer> ans = sortByValue(map);
+
+		for (int val : ans.keySet())
+		{
+			System.out.println(val);
+		}
 
 	}
 
+	public static HashMap<Integer, Integer> sortByValue(HashMap<Integer, Integer> hm)
+	{
+		// Create a list from elements of HashMap
+		List<Map.Entry<Integer, Integer>> list = new LinkedList<Map.Entry<Integer, Integer>>(hm.entrySet());
+
+		// Sort the list
+		Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>()
+		{
+			public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2)
+			{
+				return (o1.getValue()).compareTo(o2.getValue());
+			}
+		});
+
+		// put data from sorted list to hashmap
+		HashMap<Integer, Integer> temp = new LinkedHashMap<Integer, Integer>();
+		for (Map.Entry<Integer, Integer> aa : list)
+		{
+			temp.put(aa.getKey(), aa.getValue());
+		}
+		return temp;
+	}
 }
 
 /* https://github.com/shahiddhariwala */
