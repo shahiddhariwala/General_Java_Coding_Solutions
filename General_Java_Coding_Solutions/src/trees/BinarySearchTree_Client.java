@@ -157,6 +157,25 @@ public class BinarySearchTree_Client
 		 * END=>90<=END
 		 * LevelOrder Traversal : 55 45 85 30 80 90 40
 		 */
+		
+		
+		BinarySearchTree bstx = new BinarySearchTree();
+		int addArr[] =
+		{ 5,3, 2, 4, 7, 6, 8 };
+		for(int x : addArr)
+		{
+			bstx.add(x);
+		}
+		bstx.display();
+		bstx.remove(2);
+		System.out.println("++++++++++++++++++++++++");
+		bstx.display();
+		bstx.remove(3);
+		System.out.println("++++++++++++++++++++++++");
+		bstx.display();
+		bstx.remove(5);
+		System.out.println("++++++++++++++++++++++++");
+		bstx.display();
 	}
 
 }

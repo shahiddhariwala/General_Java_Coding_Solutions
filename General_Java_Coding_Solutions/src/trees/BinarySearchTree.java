@@ -81,7 +81,7 @@ public class BinarySearchTree
 
 	public void remove(int val)
 	{
-		this.root = this.remove(this.root, val);
+		this.root = this.remove(this.root, val); 
 
 	}
 
@@ -124,7 +124,7 @@ public class BinarySearchTree
 				// or find maximum from left subtree and replace it with node to be removed
 				Node maxFromLeft = this.max(node.left);
 				node.data = maxFromLeft.data;
-				this.remove(node.left, maxFromLeft.data);
+				node.left=this.remove(node.left, maxFromLeft.data);
 				// remove that max node from left substree
 			}
 		}
