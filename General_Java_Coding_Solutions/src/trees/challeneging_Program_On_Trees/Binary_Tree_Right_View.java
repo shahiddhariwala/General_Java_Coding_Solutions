@@ -39,7 +39,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-import trees.challeneging_Program_On_Trees.Binary_tree_Top_View.BinaryTree.Node;
 
 public class Binary_Tree_Right_View
 {
