@@ -39,6 +39,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
+import trees.challeneging_Program_On_Trees.Binary_tree_Top_View.BinaryTree.Node;
+
 public class Binary_Tree_Right_View
 {
 	public static Scanner sc = new Scanner(System.in);
@@ -154,25 +156,26 @@ public class Binary_Tree_Right_View
 
 		private void rightView()
 		{
-			HashMap<Integer,Boolean> hm = new HashMap<>();
-			this.rightView(this.root,hm);
+			int[] maxlevel = new int[1];
+			maxlevel[0]=-1;
+			this.rightView(this.root,0,maxlevel);
 		}
 
-		private void rightView(Node node,HashMap<Integer,Boolean> hm)
+		private void rightView(Node node, int level, int[] maxlevel)
 		{
 			if(node==null)
 			{
 				return;
 			}
 			
-			if(!hm.containsKey(node.level))
+			if(maxlevel[0]<level)
 			{
 				System.out.print(node.data+" ");
-				hm.put(node.level,true);
+				maxlevel[0]=level;
 			}
-			this.rightView(node.right,hm);
-			this.rightView(node.left,hm);
 			
+			this.rightView(node.right, level+1, maxlevel);
+			this.rightView(node.left, level+1, maxlevel);
 			
 		}
 
