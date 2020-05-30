@@ -156,11 +156,6 @@ public class Vertical_Order_Print_Binary_Tree
 
 		public void verticalOrder()
 		{
-			if (this.root == null)
-			{
-				System.out.println("No ");
-				return;
-			}
 			TreeMap<Integer, ArrayList<Integer>> tm = new TreeMap<Integer, ArrayList<Integer>>();
 			this.verticalOrder(this.root, 0, tm);
 			tm.forEach((k, v) ->
